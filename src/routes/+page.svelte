@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Header from '$lib/Header.svelte';
+</script>
+
+<Header />
+
+<div class="columns">
+	<div class="column">
+		<h1 class="title">Markify</h1>
+		<p>Contact Center Quality Solution</p>
+	</div>
+</div>
