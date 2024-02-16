@@ -12,7 +12,9 @@
 
 <div class="rounded bg-info bg-gradient p-5">
 <form on:submit|preventDefault={login}>
-	<h1 class="text-center">Markify</h1>
+	<div class="container d-flex justify-content-center">
+	<img src='markify-logo.png' alt="Markifylogo" width="200" height="200">
+	</div>
 	<h3 class="text-center">Please Login</h3>
 	<div class="mb-3">
 		<label class="form-label" for="email">Email</label>
