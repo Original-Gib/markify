@@ -1,12 +1,21 @@
 <script>
 	import { goto } from '$app/navigation';
+	import {markifyService} from "../services/markify-service.js"
 
 	let email = '';
 	let password = '';
+	let errorMessage = '';
 
 	async function login() {
-		console.log(`attemting to log in email: ${email} with password: ${password}`);
-		goto('/');
+		console.log(`attempting to log in email: ${email} with password: ${password}`);
+		let success = await markifyService.login(email, password);
+		if (success) {
+			await goto("/");
+		} else {
+			email = "";
+			password = "";
+			errorMessage = "Invalid Credentials";
+		}
 	}
 </script>
 
@@ -32,6 +41,11 @@
 		<a href="/signup"><button class="btn btn-light">Signup</button></a>
 		</div>
 	</div>
+	{#if errorMessage}
+		<div class="section">
+			{errorMessage}
+		</div>
+	{/if}
 
 
 </form>

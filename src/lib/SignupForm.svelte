@@ -1,22 +1,27 @@
 <script>
 
 	import { goto } from '$app/navigation';
+	import { markifyService } from '../services/markify-service.js';
 
 	// defining variables used for signup
 
 
-	let companyName = '';
 	let firstName = '';
 	let lastName = '';
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
+	let errorMessage = '';
 
 	//sign up function to send the entered details to the API
 	async function signup() {
-		console.log(`attempting to sign up email: ${email} , comp name ${companyName},
-		 						 name ${firstName} ${lastName}, password ${password}, conf pass ${confirmPassword}`);
-		goto('/login')
+		console.log(`attempting to sign up email: ${email}`);
+		let success = await markifyService.signup(firstName, lastName, email, password);
+		if (success) {
+			await goto("/");
+		} else {
+			errorMessage = "Error Trying to sign up";
+		}
 	}
 
 </script>
@@ -28,18 +33,6 @@
 			<img src='markify-logo.png' alt="Markify logo" width="200" height="200">
 		</div>
 		<h3 class="text-center">Please Register</h3>
-
-		<div class="mb-3">
-			<label for="companyName" class="form-label">Company Name</label>
-			<input
-				bind:value={companyName}
-				id="companyName"
-				class="form-control"
-				type="text"
-				placeholder="Enter company name"
-				name="companyName"
-			/>
-		</div>
 
 		<div class="row">
 			<div class="col-md-6 mb-3">
@@ -106,4 +99,11 @@
 			<a href="/login" class="btn btn-light">Login</a>
 		</div>
 	</form>
+
+	{#if errorMessage}
+		<div class="section">
+			{errorMessage}
+		</div>
+	{/if}
+
 </div>
