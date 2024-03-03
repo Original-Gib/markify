@@ -1,5 +1,5 @@
 <script>
-
+	import { user } from "../stores.js";
 
 </script>
 
@@ -26,4 +26,15 @@
 				</li>
 			</ul>
 		</div>
+	<div>
+	{#if $user.email}
+		<div class="nav-link text-white" style="margin-right: 20px;">Logged in as: {$user.email}</div>
+		{/if}
+	</div>
+	<div>
+	<a href="/logout" class="column is04" style="margin-right: 20px;">
+		<i class="fas fa-sign-out-alt fa-3x" style="color:rgb(127, 199, 217)" />
+	</a>
+
+	</div>
 </nav>

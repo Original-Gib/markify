@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { user, team } from '../stores.js';
+import { goto } from '$app/navigation';
 
 export const markifyService = {
 	baseUrl: "http://localhost:3000",
@@ -7,7 +9,12 @@ export const markifyService = {
 		try {
 			const response = await axios.post(`${this.baseUrl}/api/users/authenticate`, { email, password });
 			axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
-			if (response.data.success) {
+				if (response.data.success) {
+					user.set({
+						email: email,
+						token: response.data.token
+					});
+					localStorage.markify = JSON.stringify({ email: email, token: response.data.token });
 				return true;
 			}
 			return false;
@@ -18,8 +25,12 @@ export const markifyService = {
 	},
 
 	async logout() {
+		user.set({
+			email: "",
+			token: "",
+		});
 		axios.defaults.headers.common["Authorization"] = "";
-		localStorage.removeItem("donation");
+		localStorage.removeItem("markify");
 	},
 
 	async signup(firstName, lastName, email, password) {
@@ -35,5 +46,57 @@ export const markifyService = {
 		} catch (error) {
 			return false;
 		}
-	}
+	},
+
+	reload() {
+		const markifyCredentials = localStorage.markify;
+		if (markifyCredentials) {
+			const savedUser = JSON.parse(markifyCredentials);
+			user.set({
+				firstName: savedUser.firstName,
+				email: savedUser.email,
+				token: savedUser.token
+			});
+			axios.defaults.headers.common["Authorization"] = "Bearer " + savedUser.token;
+		}
+	},
+
+	async getTeams() {
+		try {
+			const response = await axios.get(this.baseUrl + "/api/teams");
+			if (response.data.success) {
+				team.set({
+					teamName: teamName,
+					_id: _id
+				});
+			}
+			return response.data;
+		} catch (error) {
+			return [];
+		}
+	},
+
+	async deleteTeam(teamId) {
+		const urlTeamId = teamId;
+		try {
+			console.log("Attempting to delete team with ID: " + urlTeamId)
+			const response = await axios.delete(this.baseUrl + "/api/teams/" + urlTeamId);
+			goto('/staff')
+			return response.status;
+		} catch (error) {
+			console.log("Unable to delete team ID: " + urlTeamId);
+		}
+	},
+
+	async createTeam(teamName) {
+		try {
+			const teamDetails = {
+				teamName: teamName
+			};
+			await axios.post(this.baseUrl + "/api/teams", teamDetails);
+			return true;
+		} catch (error) {
+			return false;
+		}
+	},
 };

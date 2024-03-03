@@ -16,11 +16,19 @@
 	//sign up function to send the entered details to the API
 	async function signup() {
 		console.log(`attempting to sign up email: ${email}`);
-		let success = await markifyService.signup(firstName, lastName, email, password);
-		if (success) {
-			await goto("/");
+		if (firstName && lastName && email && password && confirmPassword) {
+			if (password === confirmPassword) {
+				let success = await markifyService.signup(firstName, lastName, email, password);
+				if (success) {
+					await goto("/");
+				} else {
+					errorMessage = "Error Trying to sign up";
+				}
+			} else {
+				errorMessage = "Passwords do not match"
+			}
 		} else {
-			errorMessage = "Error Trying to sign up";
+			errorMessage = "Please complete all fields"
 		}
 	}
 
