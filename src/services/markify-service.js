@@ -99,4 +99,28 @@ export const markifyService = {
 			return false;
 		}
 	},
+
+	async getTeam(teamId) {
+		const urlTeamId = teamId;
+		try {
+			console.log("attempting employee fetch")
+			const response = await axios.get(this.baseUrl + "/api/teams/" + urlTeamId);
+			console.log(response.data.employees);
+			return response.data.employees;
+		} catch (error) {
+			return [];
+		}
+	},
+
+	async deleteEmployee(employeeId) {
+		const urlEmployeeId = employeeId;
+		try {
+			console.log("Attempting to delete employee with ID: " + urlEmployeeId)
+			const response = await axios.delete(this.baseUrl + "/api/employees/" + urlEmployeeId);
+			goto('/staff')
+			return response.status;
+		} catch (error) {
+			console.log("Unable to delete employee ID: " + urlEmployeeId);
+		}
+	},
 };

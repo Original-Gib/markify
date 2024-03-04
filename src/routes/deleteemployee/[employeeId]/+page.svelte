@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import { markifyService } from '../../../services/markify-service';
 
-	const teamId = $page.params.teamId;
+	const employeeId = $page.params.employeeId;
 
-	markifyService.deleteTeam(teamId);
+	markifyService.deleteEmployee(employeeId);
 </script>
