@@ -112,6 +112,22 @@ export const markifyService = {
 		}
 	},
 
+	async createEmployee(teamId, firstName, lastName, email, supervisor) {
+		const urlTeamId = teamId;
+		try {
+			const employeeDetails = {
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				supervisor: supervisor
+			};
+			await axios.post(this.baseUrl + "/api/teams/" + urlTeamId + "/employees", employeeDetails);
+			return true;
+		} catch (error) {
+			return false;
+		}
+	},
+
 	async deleteEmployee(employeeId) {
 		const urlEmployeeId = employeeId;
 		try {

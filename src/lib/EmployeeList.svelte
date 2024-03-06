@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { markifyService } from '../services/markify-service';
 	import { page } from '$app/stores';
+	import EmployeeForm from '$lib/EmployeeForm.svelte';
 
 
 	const teamId = $page.params.teamId;
@@ -54,7 +55,7 @@
 		{/each}
 		<tr>
 			<td>
-				Add Employee
+				<EmployeeForm/>
 			</td>
 		</tr>
 		</tbody>

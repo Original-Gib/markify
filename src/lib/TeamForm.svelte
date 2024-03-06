@@ -1,6 +1,5 @@
 <script>
 import { markifyService} from '../services/markify-service.js';
-import { goto } from '$app/navigation';
 
 let teamName = '';
 let errorMessage = '';
@@ -46,3 +45,9 @@ let errorMessage = '';
 		</div>
 	</div>
 </div>
+
+{#if errorMessage}
+	<div class="section">
+		{errorMessage}
+	</div>
+{/if}
