@@ -139,4 +139,19 @@ export const markifyService = {
 			console.log("Unable to delete employee ID: " + urlEmployeeId);
 		}
 	},
+
+	async createScorecard(title, teamId, questions) {
+		const urlTeamId = teamId;
+		try {
+			const scorecardDetails = {
+				title: title,
+				teamId: teamId,
+				questions: questions,
+			};
+			await axios.post(this.baseUrl + "/api/teams/" + urlTeamId + "/scorecards", scorecardDetails);
+			return true;
+		} catch (error) {
+			return false;
+		}
+	},
 };
