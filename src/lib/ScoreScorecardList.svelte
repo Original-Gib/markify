@@ -4,6 +4,7 @@
 	import { page } from '$app/stores';
 
 	const teamId = $page.params.teamId;
+	const employeeId = $page.params.employeeId;
 
 	let scorecardList = [];
 
@@ -31,28 +32,13 @@
 				</td>
 				<td class="py-3">
 					<button type="button" class="btn btn-secondary">
-						<a href="/scorecards/{scorecard._id}/edit">
+						<a href="/score/team/{teamId}/employee/{employeeId}/scorecard/{scorecard._id}">
 							<i class="fa-regular fa-folder-open" style="color:rgb(15, 16, 53)"></i>
-						</a>
-					</button>
-				</td>
-				<td class="py-3">
-					<button type="button" class="btn btn-danger">
-						<a href="/deletescorecard/{scorecard._id}">
-							<i class="fas fa-trash" style="color:rgb(15, 16, 53)"></i>
 						</a>
 					</button>
 				</td>
 			</tr>
 		{/each}
-		<tr>
-			<td>
-				<button type="button" class="btn btn-success">
-					<a href="/scorecards/{teamId}/createscorecard">
-						<i class="fa-solid fa-plus" style="color:rgb(15, 16, 53)"></i>
-					</a>
-			</td>
-		</tr>
 		</tbody>
 	</table>
 </div>
