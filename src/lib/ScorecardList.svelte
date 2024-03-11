@@ -8,7 +8,7 @@
 	let scorecardList = [];
 
 	onMount(async () => {
-		scorecardList = await markifyService.getScorecards();
+		scorecardList = await markifyService.getScorecardsByTeamId(teamId);
 		console.log(scorecardList)
 	});
 

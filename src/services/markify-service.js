@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { user, team } from '../stores.js';
+import { team, user } from '../stores.js';
 import { goto } from '$app/navigation';
 
 export const markifyService = {
@@ -158,6 +158,15 @@ export const markifyService = {
 	async getScorecards() {
 		try {
 			const response = await axios.get(this.baseUrl + "/api/scorecards");
+			return response.data;
+		} catch (error) {
+			return [];
+		}
+	},
+
+	async getScorecardsByTeamId(teamId) {
+		try {
+			const response = await axios.get(this.baseUrl + "/api/scorecards/team/" + teamId);
 			return response.data;
 		} catch (error) {
 			return [];
