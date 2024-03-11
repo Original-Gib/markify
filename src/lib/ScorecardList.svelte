@@ -8,7 +8,8 @@
 	let scorecardList = [];
 
 	onMount(async () => {
-		// TODO: create API endpoint to retrieve saved scorecards
+		scorecardList = await markifyService.getScorecards();
+		console.log(scorecardList)
 	});
 
 </script>
@@ -26,7 +27,7 @@
 		{#each scorecardList as scorecard}
 			<tr>
 				<td class="py-3 has-text-left">
-					<i class="fa-solid fa-people-group"></i> Scorecard A
+					<i class="fa-regular fa-clipboard" style="color:rgb(15, 16, 53)"></i> {scorecard.title}
 				</td>
 				<td class="py-3">
 					<button type="button" class="btn btn-secondary">
@@ -37,7 +38,7 @@
 				</td>
 				<td class="py-3">
 					<button type="button" class="btn btn-danger">
-						<a href="/deletescorecard/scorecardId">
+						<a href="/deletescorecard/{scorecard._id}">
 							<i class="fas fa-trash" style="color:rgb(15, 16, 53)"></i>
 						</a>
 					</button>
@@ -48,7 +49,7 @@
 			<td>
 				<button type="button" class="btn btn-success">
 					<a href="/scorecards/{teamId}/createscorecard">
-						<i class="fas fa-trash" style="color:rgb(15, 16, 53)"></i>
+						<i class="fa-solid fa-plus" style="color:rgb(15, 16, 53)"></i>
 					</a>
 			</td>
 		</tr>

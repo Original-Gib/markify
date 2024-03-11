@@ -154,4 +154,25 @@ export const markifyService = {
 			return false;
 		}
 	},
+
+	async getScorecards() {
+		try {
+			const response = await axios.get(this.baseUrl + "/api/scorecards");
+			return response.data;
+		} catch (error) {
+			return [];
+		}
+	},
+
+	async deleteScorecard(scorecardId) {
+		const urlScorecardId = scorecardId;
+		try {
+			console.log("Attempting to delete scorecard with ID: " + urlScorecardId)
+			const response = await axios.delete(this.baseUrl + "/api/scorecards/" + urlScorecardId);
+			goto('/scorecards')
+			return response.status;
+		} catch (error) {
+			console.log("Unable to delete scorecard ID: " + urlScorecardId);
+		}
+	},
 };
