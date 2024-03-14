@@ -105,8 +105,7 @@ export const markifyService = {
 		try {
 			console.log("attempting employee fetch")
 			const response = await axios.get(this.baseUrl + "/api/teams/" + urlTeamId);
-			console.log(response.data.employees);
-			return response.data.employees;
+			return response.data;
 		} catch (error) {
 			return [];
 		}
@@ -125,6 +124,17 @@ export const markifyService = {
 			return true;
 		} catch (error) {
 			return false;
+		}
+	},
+
+	async getEmployee(employeeId) {
+		const urlEmployeeId = employeeId;
+		try {
+			console.log("attempting employee fetch")
+			const response = await axios.get(this.baseUrl + "/api/employees/" + urlEmployeeId);
+			return response.data;
+		} catch (error) {
+			return [];
 		}
 	},
 
@@ -158,6 +168,18 @@ export const markifyService = {
 	async getScorecards() {
 		try {
 			const response = await axios.get(this.baseUrl + "/api/scorecards");
+			return response.data;
+		} catch (error) {
+			return [];
+		}
+	},
+
+	async getScorecard(scorecardId) {
+		const urlScorecardId = scorecardId;
+		try {
+			console.log("attempting scorecard fetch")
+			const response = await axios.get(this.baseUrl + "/api/scorecards/" + urlScorecardId);
+			console.log(response.data);
 			return response.data;
 		} catch (error) {
 			return [];

@@ -8,12 +8,12 @@
 	const teamId = $page.params.teamId;
 
 
-	let employeeList = [];
+	let team = { employees: [] };
 
 
 	onMount(async () => {
-		employeeList = await markifyService.getTeam(teamId);
-		console.log(employeeList);
+		team = await markifyService.getTeam(teamId);
+		console.log(team);
 	});
 </script>
 
@@ -29,7 +29,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		{#each employeeList as employee}
+		{#each team.employees as employee}
 			<tr>
 				<td class="py-3 has-text-left">
 					<i class="fa-solid fa-user"></i> {employee.firstName} {employee.lastName}
