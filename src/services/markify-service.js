@@ -206,4 +206,25 @@ export const markifyService = {
 			console.log("Unable to delete scorecard ID: " + urlScorecardId);
 		}
 	},
+
+	async createResult(employeeId, teamId, scorecardId, userAnswers, totalScore, sumScore, percentScore, reference) {
+		try {
+			const answers = userAnswers.map(answerText => ({ text: answerText }));
+
+			const resultDetails = {
+				employeeId: employeeId,
+				teamId: teamId,
+				scorecardId: scorecardId,
+				answers,
+				totalScore: totalScore,
+				sumScore: sumScore,
+				percentScore: percentScore,
+				reference: reference
+			};
+			await axios.post(this.baseUrl + "/api/results", resultDetails);
+			return true;
+		} catch (error) {
+			return false;
+		}
+	},
 };

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { markifyService } from '../services/markify-service';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	const teamId = $page.params.teamId;
 	const employeeId = $page.params.employeeId;
@@ -26,10 +27,9 @@
 		userAnswers = scorecard.questions.map(() => '');
 	});
 
-	function submitScore() {
+	async function submitScore() {
 		errorMessage = '';
 		totalScore = 0;
-
 
 		//check that all questions in the scorecard are answered
 		const allAnswered = userAnswers.every(answer => answer !== '');
@@ -54,7 +54,6 @@
 			percentScore = Math.round(totalScore/sumScore * 100)
 		});
 
-		//todo: implement api endpoint to save the result to DB
 		console.log('Employee:', employee._id);
 		console.log('Team:', team._id);
 		console.log('Scorecard:', scorecard._id);
@@ -63,6 +62,13 @@
 		console.log('sum Score:', sumScore);
 		console.log('% Score:', percentScore);
 
+		let success = await markifyService.createResult(employee._id, team._id, scorecard._id, userAnswers,
+			totalScore, sumScore, percentScore, reference)
+		if (success) {
+			goto("/score")
+		} else {
+			errorMessage = "Something went wrong saving the result";
+		}
 	}
 </script>
 
