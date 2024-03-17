@@ -138,6 +138,15 @@ export const markifyService = {
 		}
 	},
 
+	async getEmployees() {
+		try {
+			const response = await axios.get(this.baseUrl + "/api/employees");
+			return response.data;
+		} catch (error) {
+			return [];
+		}
+	},
+
 	async deleteEmployee(employeeId) {
 		const urlEmployeeId = employeeId;
 		try {
@@ -225,6 +234,15 @@ export const markifyService = {
 			return true;
 		} catch (error) {
 			return false;
+		}
+	},
+
+	async getResults() {
+		try {
+			const response = await axios.get(this.baseUrl + "/api/results");
+			return response.data;
+		} catch (error) {
+			return [];
 		}
 	},
 };

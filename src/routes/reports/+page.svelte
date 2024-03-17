@@ -5,4 +5,3 @@ import Navbar from '$lib/Navbar.svelte';
 
 <Navbar/>
 
-welcome to reports

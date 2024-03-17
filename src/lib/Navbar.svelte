@@ -19,6 +19,9 @@
 					<a class="nav-link" href="/scorecards">Scorecards</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="/scorelog">Score Log</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="/reports">Reports</a>
 				</li>
 				<li class="nav-item">

@@ -20,7 +20,7 @@
 			if (password === confirmPassword) {
 				let success = await markifyService.signup(firstName, lastName, email, password);
 				if (success) {
-					await goto("/");
+					await goto("/login");
 				} else {
 					errorMessage = "Error Trying to sign up";
 				}
@@ -34,7 +34,6 @@
 
 </script>
 
-<!-- form for entering signup details  -->
 <div class="rounded bg-info bg-gradient p-5">
 	<form on:submit|preventDefault={signup}>
 		<div class="container d-flex justify-content-center">
