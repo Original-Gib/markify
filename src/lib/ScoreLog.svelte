@@ -86,7 +86,7 @@
 				</td>
 				<td class="py-3">
 					<button type="button" class="btn btn-danger">
-						<a href="/deletescore/{result._id}">
+						<a href="/deleteresult/{result._id}">
 							<i class="fas fa-trash" style="color:rgb(15, 16, 53)"></i>
 						</a>
 					</button>

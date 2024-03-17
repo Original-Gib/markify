@@ -61,6 +61,43 @@ export const markifyService = {
 		}
 	},
 
+	async addUser(firstName, lastName, email, password) {
+		try {
+			const userDetails = {
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				password: password
+			};
+			await axios.post(this.baseUrl + "/api/users/user", userDetails);
+			return true;
+		} catch (error) {
+			return false;
+		}
+	},
+
+	async deleteUser(userId) {
+		const urlUserId = userId;
+		try {
+			console.log("Attempting to delete user with ID: " + urlUserId)
+			const response = await axios.delete(this.baseUrl + "/api/users/" + urlUserId);
+			goto('/admin')
+			return response.status;
+		} catch (error) {
+			console.log("Unable to delete user ID: " + urlUserId);
+		}
+	},
+
+	async getUsers() {
+		try {
+			const response = await axios.get(this.baseUrl + "/api/users");
+			return response.data;
+		} catch (error) {
+			return [];
+		}
+	},
+
+
 	async getTeams() {
 		try {
 			const response = await axios.get(this.baseUrl + "/api/teams");
@@ -234,6 +271,17 @@ export const markifyService = {
 			return true;
 		} catch (error) {
 			return false;
+		}
+	},
+
+	async deleteResult(resultId) {
+		const urlResultId = resultId;
+		try {
+			const response = await axios.delete(this.baseUrl + "/api/results/" + urlResultId);
+			goto('/scorelog')
+			return response.status;
+		} catch (error) {
+			console.log("Unable to delete result ID: " + urlResultId);
 		}
 	},
 
