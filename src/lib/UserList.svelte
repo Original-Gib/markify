@@ -34,7 +34,7 @@
 				</td>
 				<td class="py-3">
 					<button type="button" class="btn btn-secondary">
-						<a href="/team/">
+						<a href="/edituser/{user._id}">
 							<i class="fa-solid fa-pen-to-square" style="color:rgb(15, 16, 53)"></i>
 						</a>
 					</button>

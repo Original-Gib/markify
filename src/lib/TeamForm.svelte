@@ -47,7 +47,7 @@ let errorMessage = '';
 </div>
 
 {#if errorMessage}
-	<div class="section">
+	<div class="alert alert-danger" role="alert">
 		{errorMessage}
 	</div>
 {/if}

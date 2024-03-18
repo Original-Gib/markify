@@ -1,6 +1,11 @@
 <script>
 	//imports
 	import { markifyService } from '../services/markify-service';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+
+	let user = {}
 
 	let firstName = '';
 	let lastName = '';
@@ -9,15 +14,25 @@
 	let confirmPassword = '';
 	let errorMessage = '';
 
+	let userId = $page.params.userId;
 
-	async function addUser() {
+	onMount(
+		async function getUser() {
+			user = await markifyService.getUser(userId);
+			firstName = user.firstName;
+			lastName = user.lastName;
+			email = user.email;
+	}
+	)
+
+	async function updateUser() {
 		if (firstName && lastName && email && password && confirmPassword) {
 			if (password === confirmPassword) {
-				let success = await markifyService.addUser(firstName, lastName, email, password);
+				let success = markifyService.updateUser(userId, firstName, lastName, email, password)
 				if (success) {
 					location.reload();
 				} else {
-					errorMessage = "Error Trying to add user";
+					errorMessage = 'Error trying to update user';
 				}
 			} else {
 				errorMessage = "Passwords do not match"
@@ -29,20 +44,9 @@
 
 </script>
 
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-	<i class="fa-solid fa-plus"></i>
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="exampleModalLabel">Add new user</h1>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form on:submit|preventDefault={addUser}>
+<div class="rounded bg-info bg-gradient p-5">
+				<form on:submit|preventDefault={updateUser} class="container">
+					<h3 class="text-center mb-4">Edit User</h3>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstname" class="form-label">First Name</label>
@@ -104,21 +108,19 @@
 						</div>
 					</div>
 					<div class="row gx-5">
-					<div class="col">
-						<button class="btn btn-success">Add User</button>
-					</div>
-					<div class="col">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-					</div>
+						<div class="col">
+							<button class="btn btn-success">Edit User</button>
+						</div>
+						<div class="col">
+							<a href="/admin">
+							<button type="button" class="btn btn-secondary">Cancel</button>
+							</a>
+						</div>
 					</div>
 				</form>
-			</div>
+	{#if errorMessage}
+		<div class="alert alert-danger" role="alert">
+			{errorMessage}
 		</div>
-	</div>
+	{/if}
 </div>
-
-{#if errorMessage}
-	<div class="section">
-		{errorMessage}
-	</div>
-{/if}

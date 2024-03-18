@@ -76,6 +76,21 @@ export const markifyService = {
 		}
 	},
 
+	async updateUser(userId, firstName, lastName, email, password) {
+		try{
+			const updatedUserDetails = {
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				password: password,
+			}
+			await axios.put(this.baseUrl + "/api/users/" + userId, updatedUserDetails);
+			return true;
+		} catch (err) {
+			return false;
+		}
+	},
+
 	async deleteUser(userId) {
 		const urlUserId = userId;
 		try {
@@ -97,6 +112,14 @@ export const markifyService = {
 		}
 	},
 
+	async getUser(userId) {
+		try {
+			const response = await axios.get(this.baseUrl + "/api/users/" + userId);
+			return response.data;
+		} catch (error) {
+			return [];
+		}
+	},
 
 	async getTeams() {
 		try {
