@@ -39,8 +39,8 @@
 				</td>
 				<td class="py-3">
 					<button type="button" class="btn btn-secondary">
-						<a href="/team/">
-							<i class="fa-regular fa-folder-open" style="color:rgb(15, 16, 53)"></i>
+						<a href="/editemployee/{employee._id}">
+							<i class="fa-solid fa-pen-to-square" style="color:rgb(15, 16, 53)"></i>
 						</a>
 					</button>
 				</td>

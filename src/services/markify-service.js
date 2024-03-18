@@ -164,6 +164,21 @@ export const markifyService = {
 		}
 	},
 
+	async updateEmployee(employeeId, firstName, lastName, email, supervisor) {
+		try{
+			const updatedEmployeeDetails = {
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				supervisor: supervisor,
+			}
+			await axios.put(this.baseUrl + "/api/employees/" + employeeId, updatedEmployeeDetails);
+			return true;
+		} catch (err) {
+			return false;
+		}
+	},
+
 	async getEmployee(employeeId) {
 		const urlEmployeeId = employeeId;
 		try {
