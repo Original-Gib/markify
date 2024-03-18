@@ -11,6 +11,7 @@
 		let scores = await markifyService.getResults();
 		teams = await markifyService.getTeams();
 		let employees = await markifyService.getEmployees();
+		let users = await markifyService.getUsers();
 
 
 		let teamMap = {};
@@ -23,10 +24,16 @@
 			employeeMap[employee._id] = employee;
 		});
 
+		let userMap = {};
+		users.forEach(user => {
+			userMap[user._id] = user;
+		});
+
 		resultList.set(scores.map(score => ({
 			...score,
 			teamName: teamMap[score.teamId]?.teamName,
-			employeeName: employeeMap[score.employeeId]?.firstName + ' ' + employeeMap[score.employeeId]?.lastName
+			employeeName: employeeMap[score.employeeId]?.firstName + ' ' + employeeMap[score.employeeId]?.lastName,
+			evaluator: userMap[score.evaluatorId]?.firstName + ' ' + userMap[score.evaluatorId]?.lastName
 		})));
 	});
 
@@ -54,10 +61,11 @@
 	<table class="table">
 		<thead>
 		<tr>
-			<th scope="col" class="py-3">Reference</th>
-			<th scope="col" class="py-3">Employee</th>
-			<th scope="col" class="py-3">Team</th>
-			<th scope="col" class="py-3">Score</th>
+			<th scope="col" class="py-3"><i class="fa-solid fa-circle-info" style="color:rgb(15, 16, 53)"></i> Reference</th>
+			<th scope="col" class="py-3"><i class="fa-solid fa-user"></i> Employee</th>
+			<th scope="col" class="py-3"><i class="fa-solid fa-people-group"></i> Team</th>
+			<th scope="col" class="py-3"><i class="fa-solid fa-eye"></i> Evaluator</th>
+			<th scope="col" class="py-3"><i class="fa-regular fa-clipboard" style="color:rgb(15, 16, 53)"></i> Score</th>
 			<th scope="col" class="py-3"></th>
 			<th scope="col" class="py-3"></th>
 		</tr>
@@ -66,16 +74,19 @@
 		{#each $filteredResults as result}
 			<tr>
 				<td class="py-3 has-text-left">
-					<i class="fa-regular fa-clipboard" style="color:rgb(15, 16, 53)"></i> {result.reference}
+					{result.reference}
 				</td>
 				<td class="py-3 has-text-left">
-					<i class="fa-regular fa-clipboard" style="color:rgb(15, 16, 53)"></i> {result.employeeName}
+					{result.employeeName}
 				</td>
 				<td class="py-3 has-text-left">
-					<i class="fa-regular fa-clipboard" style="color:rgb(15, 16, 53)"></i> {result.teamName}
+					{result.teamName}
 				</td>
 				<td class="py-3 has-text-left">
-					<i class="fa-regular fa-clipboard" style="color:rgb(15, 16, 53)"></i> {result.percentScore}%
+					{result.evaluator}
+				</td>
+				<td class="py-3 has-text-left">
+					{result.percentScore}%
 				</td>
 				<td class="py-3">
 					<button type="button" class="btn btn-secondary">

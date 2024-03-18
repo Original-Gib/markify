@@ -293,4 +293,15 @@ export const markifyService = {
 			return [];
 		}
 	},
+
+	async getResult(resultId) {
+		try {
+			console.log("attempting result fetch")
+			const response = await axios.get(this.baseUrl + "/api/results/" + resultId);
+			console.log(response.data);
+			return response.data;
+		} catch (error) {
+			return [];
+		}
+	},
 };
