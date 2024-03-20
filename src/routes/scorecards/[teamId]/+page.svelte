@@ -3,7 +3,7 @@
 	import ScorecardList from '$lib/ScorecardList.svelte';
 </script>
 
-<Navbar/>
+<Navbar activeTab="scorecards"/>
 
 <div class="container bg-dark bg-gradient">
 	<div class="row">

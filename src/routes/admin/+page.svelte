@@ -4,7 +4,7 @@ import UserList from '$lib/UserList.svelte';
 </script>
 
 
-<Navbar/>
+<Navbar activeTab="admin"/>
 
 <div class="container bg-dark bg-gradient">
 	<div class="row">

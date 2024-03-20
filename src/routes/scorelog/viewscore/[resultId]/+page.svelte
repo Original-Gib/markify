@@ -3,7 +3,7 @@
 	import ViewScore from '$lib/ViewScore.svelte';
 </script>
 
-<Navbar />
+<Navbar activeTab="scorelog"/>
 
 <div class="container bg-dark bg-gradient">
 	<div class="row">

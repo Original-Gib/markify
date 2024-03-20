@@ -3,7 +3,7 @@
 	import ScoreLog from '$lib/ScoreLog.svelte';
 </script>
 
-<Navbar/>
+<Navbar activeTab="scorelog"/>
 
 <div class="container bg-dark bg-gradient">
 	<div class="row">

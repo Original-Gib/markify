@@ -1,6 +1,6 @@
 <script>
 	import { user } from "../stores.js";
-
+	export let activeTab;
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-dark text-black">
@@ -10,22 +10,22 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link text-black" href="/score">Score</a>
+					<a class="nav-link {activeTab === 'score' ? 'active' : ''}" href="/score">Score</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/staff">Staff</a>
+					<a class="nav-link {activeTab === 'staff' ? 'active' : ''}" href="/staff">Staff</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/scorecards">Scorecards</a>
+					<a class="nav-link {activeTab === 'scorecards' ? 'active' : ''}" href="/scorecards">Scorecards</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/scorelog">Score Log</a>
+					<a class="nav-link {activeTab === 'scorelog' ? 'active' : ''}" href="/scorelog">Score Log</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/reports">Reports</a>
+					<a class="nav-link {activeTab === 'reports' ? 'active' : ''}"  href="/reports">Reports</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/admin">Admin</a>
+					<a class="nav-link {activeTab === 'admin' ? 'active' : ''}" href="/admin">Admin</a>
 				</li>
 			</ul>
 		</div>

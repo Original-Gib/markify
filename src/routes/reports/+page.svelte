@@ -1,9 +1,15 @@
 <script>
 
 import Navbar from '$lib/Navbar.svelte';
-import Chart from '$lib/Chart.svelte';
+import Charts from '$lib/Charts.svelte';
 </script>
 
-<Navbar/>
+<Navbar activeTab="reports"/>
 
-<Chart/>
+<div class="container bg-dark bg-gradient">
+	<div class="row">
+		<div class="col-md-12">
+			<Charts/>
+		</div>
+	</div>
+</div>

@@ -3,7 +3,7 @@
 	import TeamList from '$lib/TeamList.svelte';
 </script>
 
-<Navbar/>
+<Navbar activeTab="staff"/>
 
 <div class="container bg-dark bg-gradient">
 	<div class="row">
