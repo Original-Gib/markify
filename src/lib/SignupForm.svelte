@@ -24,6 +24,9 @@
 				} else {
 					errorMessage = "Error Trying to sign up";
 				}
+				if(password.length < 8 ) {
+					errorMessage = "Password must be at least 8 characters"
+				}
 			} else {
 				errorMessage = "Passwords do not match"
 			}
