@@ -1,6 +1,6 @@
 <script>
-import Navbar from '$lib/Navbar.svelte';
-import UserList from '$lib/UserList.svelte';
+	import Navbar from '$lib/Navbar.svelte';
+	import EditUserForm from '$lib/EditUserForm.svelte';
 </script>
 
 
@@ -9,7 +9,7 @@ import UserList from '$lib/UserList.svelte';
 <div class="container bg-dark bg-gradient">
 	<div class="row">
 		<div class="col-md-12">
-			<UserList />
+			<EditUserForm />
 		</div>
 	</div>
 </div>

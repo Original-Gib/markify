@@ -1,14 +1,14 @@
 <script>
 	import Navbar from '$lib/Navbar.svelte';
-	import TeamList from '$lib/TeamList.svelte';
+	import ScoreScorecardList from '$lib/ScoreScorecardList.svelte';
 </script>
 
-<Navbar activeTab="staff"/>
+<Navbar activeTab="score"/>
 
 <div class="container bg-dark bg-gradient">
 	<div class="row">
 		<div class="col-md-12">
-			<TeamList />
+			<ScoreScorecardList />
 		</div>
 	</div>
 </div>
