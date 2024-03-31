@@ -3,7 +3,7 @@ import { team, user } from '../stores.js';
 import { goto } from '$app/navigation';
 
 export const markifyService = {
-	baseUrl: "http://localhost:3000",
+	baseUrl: "https://markify-backend.onrender.com",
 
 	async login(email, password) {
 		try {

@@ -4,7 +4,7 @@
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-dark text-black">
-	<a class="navbar-brand" href="/">
+	<a class="navbar-brand" href="/score">
 		<img src='/markify-logo.png' alt="Markifylogo" width="70" height="70">
 	</a>
 		<div class="collapse navbar-collapse" id="navbarNav">
