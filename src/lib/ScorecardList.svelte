@@ -20,7 +20,6 @@
 		<tr>
 			<th scope="col" class="py-3">Scorecard Name</th>
 			<th scope="col" class="py-3"></th>
-			<th scope="col" class="py-3"></th>
 		</tr>
 		</thead>
 		<tbody>
@@ -28,13 +27,6 @@
 			<tr>
 				<td class="py-3 has-text-left">
 					<i class="fa-regular fa-clipboard" style="color:rgb(15, 16, 53)"></i> {scorecard.title}
-				</td>
-				<td class="py-3">
-					<button type="button" class="btn btn-secondary">
-						<a href="/scorecards/{scorecard._id}/edit">
-							<i class="fa-regular fa-folder-open" style="color:rgb(15, 16, 53)"></i>
-						</a>
-					</button>
 				</td>
 				<td class="py-3">
 					<button type="button" class="btn btn-danger">

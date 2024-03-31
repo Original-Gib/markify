@@ -10,7 +10,7 @@
 		console.log(`attempting to log in email: ${email} with password: ${password}`);
 		let success = await markifyService.login(email, password);
 		if (success) {
-			await goto("/");
+			await goto("/staff");
 		} else {
 			email = "";
 			password = "";
